@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-xs-10">
+    <app-shopping-edit
+      (ingredientAdded)="onIngredientAdded($event)"></app-shopping-edit>
+    <hr>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let ingredient of ingredients; let i = index"
+      >
+        {{ ingredient.name }} ({{ ingredient.amount }})
+        <button
+          class="btn btn-danger btn-xs pull-right"
+          type="button"
+          (click)="onDeleteIngredient(i)"
+          [attr.aria-label]="'Delete ' + ingredient.name">
+          Delete
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<main>
+  <app-learning-resources />
+
+  <hr />
+
+  <app-auth />
+  <!-- <ng-template authDirective="admin">
+    <h1 >only admin case see this</h1>
+  </ng-template> -->
+  <!-- instaed of create ng-template we can simply use * which tells Angular under the hood to generate ng-template for this component -->
+  <p *authDirective="'admin'">Only admin can see that </p>
+</main>
