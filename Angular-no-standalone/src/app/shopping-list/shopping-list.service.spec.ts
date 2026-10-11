@@ -8,11 +8,7 @@ describe('shopping list service', () => {
     beforeEach(() => {
 
         TestBed.configureTestingModule({
-            providers: [
-                {
-                    provide: [ShoppingListService]
-                }
-            ]
+            providers: [ShoppingListService]
         });
         shoppingService = TestBed.inject(ShoppingListService);
     });
@@ -22,8 +18,11 @@ describe('shopping list service', () => {
     });
     // test get all ingredients
     it('should return all ingredients', () => {
-        shoppingService.getIngredients();
-        expect(shoppingService.getIngredients).toHaveBeenCalled();
+        const ingredient = shoppingService.getIngredients();
+        expect(ingredient.length).toBe(2);
+        expect(ingredient[0]).toEqual(new Ingredient('Apples', 5));
+        expect(ingredient[1]).toEqual(new Ingredient('Tomatoes', 10));
+        
     });
     // add new ingredient
     it('should add a new ingredient', () => {

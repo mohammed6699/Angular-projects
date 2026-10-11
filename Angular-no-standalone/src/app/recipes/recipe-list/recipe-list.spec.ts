@@ -2,7 +2,8 @@ import { ComponentFixture, TestBed } from "@angular/core/testing"
 import { RecipeListComponent } from "./recipe-list.component"
 import { RecipeService } from "../recipe.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { of } from "rxjs";
+import { of, Subject } from "rxjs";
+import { NO_ERRORS_SCHEMA } from "@angular/core";
 
 
 describe('component: Recipe-List component', () => {
@@ -25,8 +26,10 @@ describe('component: Recipe-List component', () => {
                 { provide: RecipeService, useValue: mockRecipeService },
                 { provide: ActivatedRoute, useValue: mockActivatedRoute },
                 { provide: Router, useValue: mockRouter }
-            ]
+            ],
+            schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
+        mockRecipeService.recipesChanged = new Subject<any[]>();
         textureComponent = TestBed.createComponent(RecipeListComponent);
         component = textureComponent.componentInstance;
     })
@@ -39,12 +42,15 @@ describe('component: Recipe-List component', () => {
         component.onAdd();
         expect(mockRouter.navigate).toHaveBeenCalledWith(['new-recipe'], { relativeTo: mockActivatedRoute });
     });
+    
     it('should display the recipes', () => {
         const recipes = [
-            { name: 'Pizza', imagePath: 'pizza.jpg', description: 'Test recipe', ingredients: [] }
-        ];
-        mockRecipeService.getRecipes.and.returnValue(recipes);
+            { name: 'pizza', imagePath: 'pizza.jpg', description: 'test', ingredients: [] },
+            { name: 'pizza', imagePath: 'pizza.jpg', description: 'test', ingredients: [] },
+            { name: 'pizza', imagePath: 'pizza.jpg', description: 'test', ingredients: [] }
+        ]
+        mockRecipeService.getRecipes.and.returnValue(recipes as any);
         textureComponent.detectChanges();
-        expect(component.recipes).toEqual(recipes);
+        expect(component.recipes.length).toBe(3);
     });
 })

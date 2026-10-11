@@ -5,6 +5,7 @@ import { HeaderComponent } from './header.component';
 import { AuthService } from '../auth/auth.service';
 import { DataStorageService } from '../shared/data-storage.service';
 import { DropdownDirective } from '../shared/dropdown.directive';
+import { CommonModule } from '@angular/common';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -28,7 +29,10 @@ describe('HeaderComponent', () => {
 
     await TestBed.configureTestingModule({
       declarations: [HeaderComponent, DropdownDirective],
-      imports: [RouterTestingModule],
+      imports: [
+        CommonModule,
+        RouterTestingModule
+      ],
       providers: [
         { provide: AuthService, useValue: mockAuthService },
         { provide: DataStorageService, useValue: mockDataStorageService }
@@ -80,7 +84,8 @@ describe('HeaderComponent', () => {
     component.onLogout();
     expect(mockAuthService.logoutMethod).toHaveBeenCalled();
   });
-  it('should unsubscribe from userSub when the component is destroyed', () => {
+
+    it('should unsubscribe from userSub when the component is destroyed', () => {
   fixture.detectChanges();
 
   const subscription = (component as any).userSub;
