@@ -1,0 +1,53 @@
+<section>
+  <header>
+    <img src="laptop-desk.jpg" alt="A web app running on a laptop desk" />
+    <h2>Build Web Apps With Angular!</h2>
+  </header>
+  <p>
+    Angular is one of the most popular modern web development frameworks out
+    there!
+  </p>
+  <p>
+    It's getting used by thousands of developers and companies since it allows
+    developers to build powerful, highly interactive web applications with ease!
+  </p>
+  <p>
+    Whilst you could use "just JavaScript" to build such applications, Angular
+    vastly simplifies the process and allows you to build applications with a
+    clear, modular structure - a feature that's especially important as
+    applications become more complex.
+  </p>
+</section>
+
+<section>
+  <header>
+    <img src="student.jpg" alt="A student learning for an exam" />
+    <h2>What Does This Course Offer?</h2>
+  </header>
+
+  <p>
+    This course will teach you all the fundamentals about components, templates,
+    directives, databinding, routing, HTTP access and much more! We will take a
+    lot of deep dives and build multiple demo projects along the way. All
+    examples showcase the features Angular offers and how to apply them
+    correctly.
+  </p>
+
+  <p>Best of all? This course doesn't stop at the basics!</p>
+
+  <p>
+    We'll not just scratch the surface but dive deeply into Angular as well as
+    TypeScript concepts which are especially important for Angular developers!
+  </p>
+  <button #btn>click me</button>
+</section>
+<!-- @defer (on interaction) { -->
+ <!-- we can also connect it with a button through reference lke here so when it clicked only this part will be shown -->
+ <!-- @defer (on interaction(btn)) { -->
+  <!-- prefetch is used to make the interatcion more faster so here it will be aready behind teh sceen once the user hover it but it will not be vissable unless user interact by clicking  -->
+  @defer (on interaction; prefetch on hover) {
+  <!-- the app-offer will not be shown unless you click on the placeholder element / or simply when user interact with the component  -->
+  <app-offer-preview />
+}@placeholder {
+  <p class="fallback">we might have an offer...</p>
+}
